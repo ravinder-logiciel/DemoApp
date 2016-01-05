@@ -1,0 +1,59 @@
+<!--filter-->
+<div>
+  <h4>Filter by:</h4>
+  <form ng-submit="filterBy(search)" name="filterForm" class="filter-form">
+    <input type="text"
+      ng-model='search.firstName'
+      placeholder="First Name" />
+    <input type="text"
+      ng-model='search.lastName'
+      placeholder="Last Name" />
+    <input type="number"
+      ng-model='search.age'
+      placeholder="Age" />
+    <input 
+      type="submit" 
+      value="Filter" 
+      class="btn btn-default" 
+      name="submit">
+    <input 
+      type="reset" 
+      value="Reset Filter" 
+      ng-click="resetFilter()" 
+      name="reset" 
+      class="btn btn-default">
+  </form>
+</div>
+<!--/filter-->
+
+<!--sorting-->
+<div class="sort">
+  <h4>Sort by:</h4>
+
+  <a href="javascript:void(0)" ng-click="sortBy('firstName')" class="btn btn-default">First Name</a>
+  <a href="javascript:void(0)" ng-click="sortBy('lastName')" class="btn btn-default">Last Name</a>
+  <a href="javascript:void(0)" ng-click="sortBy('age')" class="btn btn-default">Age</a>
+  
+</div>
+<!--/sorting-->
+
+<!--view-->
+<div>
+  <table class="table">
+    <tr>
+      <th>Sr. No.</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th>Sex</th>
+    </tr>
+    <tr ng-repeat="rec in records | filter:{'firstName':find.firstName,'lastName':find.lastName,'age':find.age,'sex':find.sex} | orderBy:sort:reverse">
+      <td>{{$index+1}}</td>
+      <td>{{rec.firstName}}</td>
+      <td>{{rec.lastName}}</td>
+      <td>{{rec.age}}</td>
+      <td>{{rec.sex}}</td>
+    </tr>
+  </table>
+</div>
+<!--/view-->
